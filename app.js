@@ -11,10 +11,13 @@ let clicks = 0;
 // Listener for click to create black bg div
 btn.addEventListener('click', function(){
     let newDiv = document.createElement('div');
+    let link = document.createElement('a');
     newDiv.className = 'boxes';
     newDiv.id = clicks;
+    link.id = clicks;
     let divText = document.createTextNode(clicks);
-    newDiv.appendChild(divText);
+    link.appendChild(divText);
+    newDiv.appendChild(link);
     document.body.appendChild(newDiv);
     clicks++;
 
@@ -22,18 +25,43 @@ btn.addEventListener('click', function(){
 
     // Listener for click on boxes
     let boxes = document.querySelectorAll('.boxes');
-    
+
     boxes.forEach(function(div){
+        // Changes box background to random color
         div.addEventListener('click', function(e){
             let rainbow = ['pink', 'gray', 'purple', 'green', 'red', 'blue', 'yellow', 'orange'];
             function getRandomInt(max) {
                 return Math.floor(Math.random() * Math.floor(max));
             }
-            e.target.style.backgroundColor = rainbow[getRandomInt(9)];
+            if(e.target===div){
+                e.target.style.backgroundColor = rainbow[getRandomInt(9)];
+            }
         
         });
-        
     });
-
-
+    
+    
+    // Adds event listeners to links
+        // Double Click = removeChild()
+        link.addEventListener('dblclick', function(e){
+            let check = document.getElementsByClassName('.boxes').length - 1;
+            if(newDiv.id==check || newDiv.id==0){
+                console.log(newDiv.id);
+                console.log(boxes);
+                console.log('no div');
+                // Alert 
+            }else{
+                if(link.id % 2){
+                    let leftId = 1 - parseInt(link.id, 10);
+                    let left = document.getElementById(leftId);
+                    document.body.removeChild(left);
+                }else{
+                    let rightId = 1 + parseInt(link.id, 10);
+                    let right = document.getElementById(rightId);
+                    document.body.removeChild(right);
+                }
+            }
+        });
+    
 });
+
