@@ -44,21 +44,19 @@ btn.addEventListener('click', function(){
     // Adds event listeners to links
         // Double Click = removeChild()
         link.addEventListener('dblclick', function(e){
-            let check = document.getElementsByClassName('.boxes').length - 1;
-            if(newDiv.id==check || newDiv.id==0){
+            let currentBoxes = document.getElementsByClassName('boxes');
+            let target = e.target;
+            if(target.parentNode == currentBoxes[0]){
                 console.log(newDiv.id);
-                console.log(boxes);
                 console.log('no div');
                 // Alert 
+            }else if(e.target.id % 2){
+                document.body.removeChild(currentBoxes[parseInt(e.target.id)-1]);
             }else{
-                if(link.id % 2){
-                    let leftId = 1 - parseInt(link.id, 10);
-                    let left = document.getElementById(leftId);
-                    document.body.removeChild(left);
+                if(target.parentNode == currentBoxes[currentBoxes.length-1]){
+                    console.log('no div');
                 }else{
-                    let rightId = 1 + parseInt(link.id, 10);
-                    let right = document.getElementById(rightId);
-                    document.body.removeChild(right);
+                document.body.removeChild(currentBoxes[parseInt(e.target.id)+1]);
                 }
             }
         });
