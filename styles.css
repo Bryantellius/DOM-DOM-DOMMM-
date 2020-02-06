@@ -14,15 +14,16 @@
 .boxes:hover {
     color: white;
 }
-.btnDiv {
-    margin: 1rem;
-    justify-content: center;
-}
-button {
-    border-radius: 15px;
-    width: 100%;
-    height: 30px;
-}
+
 a:hover{
     cursor: pointer;
+}
+
+h6:hover{
+    color: lightgray;
+    
+}
+
+h6{
+    color: transparent;
 }
