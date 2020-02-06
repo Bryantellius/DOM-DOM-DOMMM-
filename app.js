@@ -1,3 +1,5 @@
+// Note
+console.log('Each time I opened this project to work, I read the title and imagined the dun dun dunnn soundtrack. Hopefully, now you do too.')
 // Creates Container
 let main = document.createElement('div');
 main.className = 'container';
